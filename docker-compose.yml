@@ -7,7 +7,7 @@ services:
     env_file:
       - ./openvpn.env
     ports:
-      - "1194:1194/udp"
+      - "21194:1194/udp"
     privileged: true
     container_name: openvpn
     volumes:

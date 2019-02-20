@@ -3,7 +3,8 @@
 # Smallest base image
 FROM alpine:latest
 
-LABEL maintainer="Kyle Manna <kyle@kylemanna.com>"
+LABEL maintainer="Modified by: Jun Kurihara <kurihara@ieee.org>"
+LABEL maintainer="Original: Kyle Manna <kyle@kylemanna.com>"
 
 # Testing: pamtester
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \
@@ -25,7 +26,7 @@ VOLUME ["/etc/openvpn"]
 # Internally uses port 1194/udp, remap using `docker run -p 443:1194/tcp`
 EXPOSE 1194/udp
 
-CMD ["ovpn_run"]
+CMD ["ovpn_run", "--log", "/var/log/openvpn/openvpn.log"]
 
 ADD ./bin /usr/local/bin
 RUN chmod a+x /usr/local/bin/*
