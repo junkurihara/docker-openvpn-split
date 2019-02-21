@@ -51,7 +51,6 @@ remote $OVPN_CN $VPN_OVPN_EXTERNAL_PORT $OVPN_PROTO"
     if [ "$mode" == "combined" ]; then
         echo "
 remote-random
-nobind
 persist-tun
 verb 2
 mute 3
@@ -91,7 +90,8 @@ tls-auth ta.key 1
     fi
 
     if [ "$OVPN_DEFROUTE" != "0" ];then
-        echo "redirect-gateway def1"
+        # echo "redirect-gateway def1"
+	echo ""
     fi
 
     if [ -n "$OVPN_MTU" ]; then

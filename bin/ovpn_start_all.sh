@@ -14,7 +14,7 @@ if [ ! -f "${OPENVPN}/openvpn.conf" ]; then
     if [ -z "${VPN_OVPN_ROUTES}" ]; then
 	OVPN_ROUTES_OPT="-r 192.168.255.0/24"
     else
-	OVPN_ROUTES_OPT="-r ${VPN_OVPN_ROUTES} -r 192.168.255.0/24"
+	OVPN_ROUTES_OPT="-r ${VPN_OVPN_ROUTES}"
     fi
 
     if [ -z "${VPN_DNS_SRV1}" ] && [ -z "${VPN_DNS_SRV2}" ]; then
