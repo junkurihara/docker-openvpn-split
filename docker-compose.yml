@@ -3,9 +3,10 @@ version: '3'
 services:
   openvpn:
     image: jqtype/openvpn
-    restart: always
+#    restart: always
+    tty: true
     env_file:
-      - ./openvpn.env
+      - ./vpn.env
     ports:
       - "21194:1194/udp"
     privileged: true

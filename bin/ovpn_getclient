@@ -35,20 +35,38 @@ get_client_config() {
 client
 nobind
 dev $OVPN_DEVICE
+dev-type $OVPN_DEVICE
 remote-cert-tls server
 
-remote $OVPN_CN $OVPN_PORT $OVPN_PROTO"
+remote $OVPN_CN $VPN_OVPN_EXTERNAL_PORT $OVPN_PROTO"
     if [ "$OVPN_PROTO" == "udp6" ]; then
-        echo "remote $OVPN_CN $OVPN_PORT udp"
+        echo "remote $OVPN_CN $VPN_OVPN_EXTERNAL_PORT udp"
     fi
     if [ "$OVPN_PROTO" == "tcp6" ]; then
-        echo "remote $OVPN_CN $OVPN_PORT tcp"
+        echo "remote $OVPN_CN $VPN_OVPN_EXTERNAL_PORT tcp"
     fi
     for i in "${OVPN_EXTRA_CLIENT_CONFIG[@]}"; do
       echo "$i"
     done
     if [ "$mode" == "combined" ]; then
         echo "
+remote-random
+nobind
+persist-tun
+verb 2
+mute 3
+push-peer-info
+ping 10
+ping-restart 60
+hand-window 70
+server-poll-timeout 4
+reneg-sec 2592000
+sndbuf 393216
+rcvbuf 393216
+max-routes 1000
+comp-lzo no
+ignore-unknown-option block-outside-dns
+block-outside-dns
 <key>
 $(cat $EASYRSA_PKI/private/${cn}.key)
 </key>

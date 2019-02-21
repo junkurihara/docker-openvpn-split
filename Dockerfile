@@ -26,7 +26,7 @@ VOLUME ["/etc/openvpn"]
 # Internally uses port 1194/udp, remap using `docker run -p 443:1194/tcp`
 EXPOSE 1194/udp
 
-CMD ["ovpn_run", "--log", "/var/log/openvpn/openvpn.log"]
+CMD ["ovpn_start_all.sh"]
 
 ADD ./bin /usr/local/bin
 RUN chmod a+x /usr/local/bin/*
