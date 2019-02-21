@@ -2,7 +2,7 @@ version: '3'
 
 services:
   openvpn:
-    image: jqtype/openvpn
+    image: jqtype/openvpn-split
 #    restart: always
     tty: true
     env_file:
