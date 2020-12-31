@@ -39,9 +39,6 @@ VPN_USERS=your_vpn_username_one your_vpn_username_two
 # VPN host name (fqdn)
 
 VPN_HOST_NAME=example.com
-      docker volume create --name $OVPN_DATA
-      docker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_genconfig -u udp://VPN.SERVERNAME.COM
-      docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn ovpn_initpki
 
 # (Optional)
 # VPN_OVPN_ROUTES=192.168.111.19/32 
@@ -58,8 +55,13 @@ $ docker-compose up -d
 ```
 
 OpenVPN profiles for users will be generated as `./data/openvpn/profiles/<username>.ovpn`.
-=======
+
+```
+      docker volume create --name $OVPN_DATA
+      docker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_genconfig -u udp://VPN.SERVERNAME.COM
+      docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn ovpn_initpki
       docker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient CLIENTNAME > CLIENTNAME.ovpn
+```
 
 ## Next Steps
 
