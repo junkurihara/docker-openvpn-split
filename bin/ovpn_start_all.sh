@@ -35,6 +35,7 @@ fi
 if [ ! -d ${EASYRSA_PKI} ]; then
     echo "-- Initialize EasyRSA."
     echo "-- Note: CA key is not encrypted with passphrase by default."
+    touch /etc/openvpn/vars
     ovpn_initpki nopass
 else
     echo "-- PKI files exist. Skip to initialize EasyRSA."
